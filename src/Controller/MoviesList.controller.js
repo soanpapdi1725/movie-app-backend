@@ -4,7 +4,9 @@ import { apiConnector } from "../Config/axios.js";
 
 export const getMovies = async (req, res) => {
   try {
+    
     const query = req.body?.query;
+    console.log(req.body)
 
     const endpoint = query
       ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
