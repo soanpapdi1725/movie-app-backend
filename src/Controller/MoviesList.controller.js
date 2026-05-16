@@ -6,7 +6,6 @@ export const getMovies = async (req, res) => {
   try {
     
     const query = req.body?.query;
-    console.log(req.body)
 
     const endpoint = query
       ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
@@ -22,7 +21,7 @@ export const getMovies = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "movies found successfully",
-      data: response,
+      data: response?.data,
     });
   } catch (error) {
     console.log("Error while getting movies", error);
