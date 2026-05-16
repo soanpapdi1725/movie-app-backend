@@ -17,7 +17,7 @@ export const getMovies = async (req, res) => {
       null,
       TMDB_CONFIG.HEADERS,
     );
-    console.log("movies",response?.data);
+    console.log("movies",response?.data?.result);
 
     return res.status(200).json({
       success: true,
