@@ -3,8 +3,10 @@ import { TMDB_CONFIG } from "../Config/tmdb.config.js";
 import { apiConnector } from "../Config/axios.js";
 
 export const getMovies = async (req, res) => {
+
   try {
-    const { query } = req.body;
+    const query  = req.body?.query;
+
     const endpoint = query
       ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
       : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc`;
@@ -15,7 +17,7 @@ export const getMovies = async (req, res) => {
       null,
       TMDB_CONFIG.HEADERS,
     );
-    console.log(response);
+    console.log("movies",response.data);
     if (!response?.data?.success) {
       return res.status(404).json({
         success: false,
