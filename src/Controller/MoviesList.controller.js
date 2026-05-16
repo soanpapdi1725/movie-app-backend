@@ -17,8 +17,8 @@ export const getMovies = async (req, res) => {
       null,
       TMDB_CONFIG.HEADERS,
     );
-    console.log("movies",response.data);
-    if (!response?.data?.success) {
+    console.log("movies",response?.data);
+    if (!(response?.data?.result.length === 0)) {
       return res.status(404).json({
         success: false,
         message: "Movies not found",
@@ -49,7 +49,7 @@ export const getMovieDetail = async (req, res) => {
       null,
       TMDB_CONFIG.HEADERS,
     );
-    if (!response?.data?.success) {
+    if (!response) {
       return res.status(404).json({
         success: false,
         message: "Movie not found",
