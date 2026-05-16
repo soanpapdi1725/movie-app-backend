@@ -22,7 +22,7 @@ export const getMovies = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "movies found successfully",
-      data: response?.data,
+      data: response?.data?.result,
     });
   } catch (error) {
     console.log("Error while getting movies", error);
