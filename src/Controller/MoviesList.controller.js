@@ -28,7 +28,7 @@ export const getMovies = async (req, res) => {
 };
 export const searchMovie = async (req, res) => {
   try {
-    const { query } = req.params;
+    const { query } = req.query;
     const endpoint = `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`;
 
     const response = await apiConnector(
