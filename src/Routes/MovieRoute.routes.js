@@ -9,5 +9,5 @@ import { getMovies, getMovieDetail } from "../Controller/MoviesList.controller.j
 MovieRouter.post("/AddRecommendations", updateSearchCount);
 MovieRouter.get("/getTrendingMovies", getTrendingMovies);
 MovieRouter.get("/getMovies", getMovies);
-MovieRouter.get("/getMovieDetail", getMovieDetail);
+MovieRouter.get("/getMovieDetail/:movieId", getMovieDetail);
 export default MovieRouter;

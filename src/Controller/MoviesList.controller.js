@@ -3,9 +3,8 @@ import { TMDB_CONFIG } from "../Config/tmdb.config.js";
 import { apiConnector } from "../Config/axios.js";
 
 export const getMovies = async (req, res) => {
-
   try {
-    const query  = req.body?.query;
+    const query = req.body?.query;
 
     const endpoint = query
       ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
@@ -34,8 +33,8 @@ export const getMovies = async (req, res) => {
 
 export const getMovieDetail = async (req, res) => {
   try {
-    const { movieId } = req.body;
-    console.log(movieId)
+    const { movieId } = req.params;
+    console.log(movieId);
     const endpoint = `${TMDB_CONFIG.BASE_URL}/movie/${movie_id}`;
     const response = await apiConnector(
       "GET",
