@@ -36,7 +36,7 @@ export const getMovieDetail = async (req, res) => {
     const { movieId } = req.params;
 
     console.log(movieId);
-    const endpoint = `${TMDB_CONFIG.BASE_URL}/movie/${movie_id}`;
+    const endpoint = `${TMDB_CONFIG.BASE_URL}/movie/${movieId}`;
     const response = await apiConnector(
       "GET",
       endpoint,
