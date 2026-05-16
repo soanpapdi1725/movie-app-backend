@@ -17,12 +17,11 @@ export const getMovies = async (req, res) => {
       null,
       TMDB_CONFIG.HEADERS,
     );
-    console.log("movies",response?.data?.result);
 
     return res.status(200).json({
       success: true,
       message: "movies found successfully",
-      data: response?.data,
+      data: response,
     });
   } catch (error) {
     console.log("Error while getting movies", error);
@@ -36,6 +35,7 @@ export const getMovies = async (req, res) => {
 export const getMovieDetail = async (req, res) => {
   try {
     const { movieId } = req.body;
+    console.log(movieId)
     const endpoint = `${TMDB_CONFIG.BASE_URL}/movie/${movie_id}`;
     const response = await apiConnector(
       "GET",
