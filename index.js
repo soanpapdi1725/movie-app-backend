@@ -1,11 +1,15 @@
-const express = require("express");
-const cors = require("cors");
-const database = require("./src/Config/database");
-const MovieRouter = require("./src/Routes/MovieRoute");
+// const express = require("express");
+// const cors = require("cors");
+// const database = require("./src/Config/database");
+// const MovieRouter = require("./src/Routes/MovieRoute");
+import express from "express";
+import cors from "cors";
+import { connect } from "./src/Config/database.config.js";
+import MovieRouter from "./src/Routes/MovieRoute.routes.js";
 const PORT = process.env.BACKEND_PORT || 4000;
-require("dotenv").config();
+import "dotenv/config";
 
-database.connect();
+await connect();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,7 +19,7 @@ app.use(
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
 app.use((req, res, next) => {

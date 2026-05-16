@@ -1,6 +1,5 @@
-const Movie = require("../Model/Movie");
-
-exports.updateSearchCount = async (req, res) => {
+import Movie  from "../Model/Movie.model.js";
+export const updateSearchCount = async (req, res) => {
   try {
     // req ki body se query or movie nikal lenge
     const { searchQuery, title, poster_path, movie_id } = req.body;
@@ -24,7 +23,7 @@ exports.updateSearchCount = async (req, res) => {
       {
         $inc: { count: 1 },
       },
-      { new: true }
+      { new: true },
     );
     // Nahi mili toh create kar denge
     if (!movieRecomm) {
@@ -54,7 +53,7 @@ exports.updateSearchCount = async (req, res) => {
   }
 };
 
-exports.getTrendingMovies = async (req, res) => {
+export const getTrendingMovies = async (req, res) => {
   try {
     const allTrendingMovies = await Movie.find({}, null, {
       limit: 10,
