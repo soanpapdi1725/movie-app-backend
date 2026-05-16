@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.use("/api/v1/movie", MovieRouter);
 
 // server up and running showing
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   return res.json({
     success: true,
     message: "Server is up and running",

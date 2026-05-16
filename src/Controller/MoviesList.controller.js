@@ -3,12 +3,8 @@ import { TMDB_CONFIG } from "../Config/tmdb.config.js";
 import { apiConnector } from "../Config/axios.js";
 
 export const getMovies = async (req, res) => {
-  const { query } = req.body;
-  console.log(query);
   try {
-    const endpoint = query
-      ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-      : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc`;
+    const endpoint = `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc`;
 
     const response = await apiConnector(
       "GET",
@@ -30,7 +26,31 @@ export const getMovies = async (req, res) => {
     });
   }
 };
+export const searchMovie = async (req, res) => {
+  try {
+    const { query } = req.body;
+    const endpoint = `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`;
 
+    const response = await apiConnector(
+      "GET",
+      endpoint,
+      null,
+      TMDB_CONFIG.HEADERS,
+    );
+    console.log(response.data);
+    return res.status(200).json({
+      success: true,
+      message: "Movie searched successfully",
+      data: response?.data,
+    });
+  } catch (error) {
+    console.log("Error while getting your searched movie", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to get your searched movie... Try again later",
+    });
+  }
+};
 export const getMovieDetail = async (req, res) => {
   try {
     const { movieId } = req.params;
